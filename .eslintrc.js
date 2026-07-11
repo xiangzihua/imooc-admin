@@ -19,12 +19,12 @@ module.exports = {
       "off" 或 0：表示关闭规则
       "warn" 或 1：表示开启规则，使用警告级别的错误：warn(不会导致程序退出)
       "error" 或 2：表示开启规则，使用错误级别的错误：error(当被触发的时候，会导致程序退出)
-  
+
   */
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    //'quotes': 'off',  // 'warn' // 修改为警告  'off'  // 关闭规则
+    // 'quotes': 'off',  // 'warn' // 修改为警告  'off'  // 关闭规则
     'space-before-function-paren': 'off'
   }
 }
