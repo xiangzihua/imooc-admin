@@ -76,7 +76,11 @@ const loginRules = ref({
 // 处理密码框文本显示状态
 const passwordType = ref('password')
 const onChangePasswordType = () => {
-  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
 }
 </script>
 
