@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFormRef">
+    <el-form class="login-form" :mode="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -11,16 +11,26 @@
           <!-- <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon> -->
           <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          placeholder="username"
+          name="username"
+          type="text"
+          v-model="loginForm.username"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password"></svg-icon>
         </span>
-        <el-input placeholder="password" name="password" type="password" />
+        <el-input
+          placeholder="password"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password"
+        />
         <span class="show-pwd">
-          <svg-icon icon="eye"></svg-icon>
+          <svg-icon icon="eye" @click="onChangePasswordType"></svg-icon>
         </span>
       </el-form-item>
 
@@ -32,11 +42,42 @@
 </template>
 
 <script setup>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { validatePassword } from './rules'
 
 defineComponent({
   name: 'LoginPage'
 })
+
+// 数据源
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+
+// 验证规则
+const loginRules = ref({
+  username: [
+    {
+      require: true,
+      trgger: 'blue',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      require: true,
+      trgger: 'blue',
+      validator: validatePassword()
+    }
+  ]
+})
+
+// 处理密码框文本显示状态
+const passwordType = ref('password')
+const onChangePasswordType = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +119,8 @@ $cursor: #fff;
         padding: 12px 5px 12px 5px;
         color: $light_gray;
         height: 47px;
-        color: $cursor;
+        // color: $cursor;
+        color: #333;
       }
     }
   }
