@@ -1,6 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
-const loader = require('sass-loader')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -13,6 +12,14 @@ module.exports = defineConfig({
       '/api': {
         target: 'https://api.imooc-admin.lgdsunday.club/',
         changeOrigin: true
+      }
+    }
+  },
+  configureWebpack: {
+    resolve: {
+      fallback: {
+        path: require.resolve('path-browserify')
+        // 其他需要的核心模块
       }
     }
   },

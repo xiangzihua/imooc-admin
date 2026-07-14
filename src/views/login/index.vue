@@ -120,7 +120,6 @@ const handleLogin = () => {
   })
 }
 </script>
-
 <style lang="scss" scoped>
 $bg: #2d3a4b;
 $dark_gray: #889aa4;
@@ -137,12 +136,13 @@ $cursor: #fff;
     position: relative;
     width: 520px;
     max-width: 100%;
+    padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
 
     ::v-deep .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
     }
@@ -153,15 +153,33 @@ $cursor: #fff;
       width: 85%;
 
       input {
-        background-color: transparent;
+        background: transparent;
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
-        padding: 12px 5px 12px 5px;
+        padding: 12px 5px 12px 15px;
         color: $light_gray;
         height: 47px;
-        // color: $cursor;
-        color: #333;
+        caret-color: $cursor;
+      }
+    }
+
+    ::v-deep .el-input__wrapper {
+      width: 100%;
+      background: transparent !important;
+      box-shadow: none;
+    }
+  }
+
+  .tips {
+    font-size: 16px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+
+    span {
+      &:first-of-type {
+        margin-right: 16px;
       }
     }
   }
@@ -182,6 +200,17 @@ $cursor: #fff;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+
+    ::v-deep .lang-select {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      background-color: white;
+      font-size: 22px;
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
     }
   }
 

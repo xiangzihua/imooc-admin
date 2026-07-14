@@ -25,6 +25,13 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // 'quotes': 'off',  // 'warn' // 修改为警告  'off'  // 关闭规则
-    'space-before-function-paren': 'off'
+    'space-before-function-paren': 'off',
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        // 忽略单字组件名称
+        ignores: ['index', 'Navbar', '401', '404', 'Breadcrumb']
+      }
+    ]
   }
 }
